@@ -17,7 +17,7 @@ export const DATA = {
   description:
     "백엔드와 풀스택 개발을 중심으로 서비스 품질과 안정성을 함께 챙기는 개발자입니다.",
   summary:
-    "2019년부터 소프트웨어 품질 관리, 풀스택 개발, 백엔드 개발까지 다양한 역할을 맡아 왔습니다.\n\nSK네트웍스서비스에서 품질 관리 업무를 시작했고, 퍼스트씨앤디에서는 풀스택 개발을, 초이스테크에서는 백엔드 개발을 담당하고 있습니다. 현재는 서비스 안정성과 개발 생산성을 함께 높이는 일을 중요하게 생각합니다.",
+    "2019년부터 소프트웨어 품질 관리, 프론트 개발, 백엔드 개발까지 다양한 역할을 맡아 왔습니다.\n\nSK네트웍스서비스에서 품질 관리 업무를 시작했고, 퍼스트씨앤디에서는 풀스택 개발을, 초이스테크에서는 백엔드 개발을 담당하고 있습니다. 현재는 서비스 안정성과 개발 생산성을 함께 높이는 일을 중요하게 생각합니다.",
   avatarUrl: "/me.jpg",
   skills: [
     { name: "Next.js", icon: NextjsIconDark },
@@ -63,8 +63,7 @@ export const DATA = {
       logoUrl: "/logos/sk.jpg",
       start: "2019년",
       end: "2021년",
-      description:
-        "주요 업무: 테스트 검증 · 품질 관리 · 배포 안정화.",
+      description: "주요 업무: 테스트 검증 · 품질 관리 · 배포 안정화.",
     },
     {
       company: "퍼스트씨앤디",
@@ -75,8 +74,7 @@ export const DATA = {
       logoUrl: "/logos/firstcnd.avif",
       start: "2022년",
       end: "2024년",
-      description:
-        "기술스택: Next.js · Express · DynamoDB · AWS · Docker.",
+      description: "기술스택: Next.js · Express · DynamoDB · AWS · Docker.",
     },
     {
       company: "초이스테크",
@@ -94,7 +92,7 @@ export const DATA = {
   education: [
     {
       school: "수원과학대학교",
-      href: "https://sist.ac.kr",
+      href: "https://ssc.ac.kr/intro/univ/sub010101",
       degree: "컴퓨터정보과",
       logoUrl: "/logos/suwonscience.png",
       start: "2014년",
@@ -102,7 +100,7 @@ export const DATA = {
     },
     {
       school: "그린컴퓨터아카데미",
-      href: "https://www.greenart.co.kr/",
+      href: "https://greenart.co.kr/green/greenIntroduce",
       degree: "Java & Spring 웹 개발자 교육",
       logoUrl: "/logos/greenart.svg",
       start: "2021년",
