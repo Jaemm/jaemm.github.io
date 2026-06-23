@@ -1,0 +1,33 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="96" y1="72" x2="1104" y2="603" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6EFE4"/>
+      <stop offset="1" stop-color="#FFFDF8"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="156" y1="122" x2="1044" y2="552" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C74D2B"/>
+      <stop offset="1" stop-color="#F08B5E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" rx="44" fill="#1F1611"/>
+  <rect x="30" y="30" width="1140" height="615" rx="36" fill="url(#bg)"/>
+  <path d="M114 118H1086V556H114V118Z" fill="white" opacity="0.76"/>
+  <path d="M114 118H1086V168H114V118Z" fill="#1F1611" opacity="0.04"/>
+  <circle cx="198" cy="208" r="54" fill="url(#accent)"/>
+  <circle cx="198" cy="208" r="28" fill="#FFF7F1" opacity="0.9"/>
+  <rect x="162" y="308" width="268" height="10" rx="5" fill="#C74D2B" opacity="0.85"/>
+  <rect x="162" y="336" width="208" height="8" rx="4" fill="#B8A89C"/>
+  <rect x="162" y="362" width="242" height="8" rx="4" fill="#D1C4B8"/>
+  <rect x="162" y="400" width="430" height="246" rx="28" fill="#FFF9F3" stroke="#E8DCCF"/>
+  <path d="M190 438H564" stroke="#D9CABB" stroke-width="4" stroke-linecap="round"/>
+  <path d="M190 476H520" stroke="#E2D7CA" stroke-width="4" stroke-linecap="round"/>
+  <path d="M190 514H552" stroke="#E2D7CA" stroke-width="4" stroke-linecap="round"/>
+  <path d="M190 552H474" stroke="#E2D7CA" stroke-width="4" stroke-linecap="round"/>
+  <text x="646" y="210" fill="#1D1410" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">회고록</text>
+  <text x="646" y="282" fill="#1D1410" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="700">문제를 찾는 사람에서</text>
+  <text x="646" y="356" fill="#1D1410" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="700">안정성을 만드는 사람으로</text>
+  <text x="646" y="438" fill="#67584B" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400">품질 관리 · 풀스택 개발 · 백엔드 개발</text>
+  <text x="646" y="482" fill="#67584B" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400">SK네트웍스서비스에서 시작해, 퍼스트씨앤디와 초이스테크까지</text>
+  <text x="646" y="526" fill="#67584B" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400">실무에서 배운 것들을 하나의 기록으로 정리했습니다.</text>
+  <rect x="646" y="566" width="340" height="6" rx="3" fill="url(#accent)"/>
+</svg>
