@@ -11,7 +11,7 @@ import { Aws } from "@/components/ui/svgs/tech/aws";
 export const DATA = {
   name: "최재민",
   initials: "CJ",
-  url: "https://dillion.io",
+  url: "https://jaemm.github.io",
   location: "San Francisco, CA",
   locationLink: "https://www.google.com/maps/place/sanfrancisco",
   description:

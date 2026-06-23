@@ -1,0 +1,13 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" rx="40" fill="#F8F5F0"/>
+  <rect x="56" y="56" width="1088" height="518" rx="32" fill="white" stroke="#E5E0D8"/>
+  <circle cx="188" cy="188" r="76" fill="#E64A2E"/>
+  <path d="M188 132L242 164V228L188 260L134 228V164L188 132Z" fill="#FF7B54"/>
+  <path d="M188 260L134 228V164" stroke="#B93522" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M188 260L242 228V164" stroke="#8E2718" stroke-width="8" stroke-linejoin="round"/>
+  <text x="320" y="170" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">최재민 포트폴리오</text>
+  <text x="320" y="235" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="700">Backend Developer</text>
+  <text x="320" y="305" fill="#5F5B56" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400">Next.js · Nest.js · PostgreSQL · Redis · Docker · Kubernetes · AWS</text>
+  <text x="320" y="360" fill="#7A746C" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400">github.io 블로그 / 개발 기록 / 프로젝트 소개</text>
+  <rect x="320" y="410" width="520" height="4" rx="2" fill="#E64A2E"/>
+</svg>

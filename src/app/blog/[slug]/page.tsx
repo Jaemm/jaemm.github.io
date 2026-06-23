@@ -53,21 +53,13 @@ export async function generateMetadata({
       type: "article",
       publishedTime,
       url: `${DATA.url}/blog/${slug}`,
-      ...(image && {
-        images: [
-          {
-            url: `${DATA.url}${image}`,
-          },
-        ],
-      }),
+      images: [image ? `${DATA.url}${image}` : "/og-image.svg"],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      ...(image && {
-        images: [`${DATA.url}${image}`],
-      }),
+      images: [image ? `${DATA.url}${image}` : "/og-image.svg"],
     },
   };
 }
@@ -106,7 +98,7 @@ export default async function Blog({
     description: post.summary,
     image: post.image
       ? `${DATA.url}${post.image}`
-      : `${DATA.url}/blog/${slug}/opengraph-image`,
+      : `${DATA.url}/og-image.svg`,
     url: `${DATA.url}/blog/${slug}`,
     author: {
       "@type": "Person",
