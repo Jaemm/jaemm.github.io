@@ -87,7 +87,7 @@ export default function Navbar() {
             sideOffset={8}
             className="rounded-xl bg-primary text-primary-foreground px-4 py-2 text-sm shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] dark:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]"
           >
-            <p>Theme</p>
+            <p>테마</p>
             <TooltipArrow className="fill-primary" />
           </TooltipContent>
         </Tooltip>

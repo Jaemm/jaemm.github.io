@@ -12,17 +12,16 @@ export default function NotFound() {
                         404
                     </h1>
                     <h2 className="text-4xl tracking-tight font-semibold text-foreground mb-2">
-                        Page Not Found
+                        페이지를 찾을 수 없습니다
                     </h2>
                     <p className="text-muted-foreground mb-8 text-balance tracking-tight font-medium">
-                        The page you&apos;re looking for doesn&apos;t exist or may have been
-                        moved.
+                        찾으신 페이지가 없거나 이동되었을 수 있습니다.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-3">
                         <Link href="/">
                             <Button variant="outline" className="gap-2 cursor-pointer">
                                 <Home className="h-4 w-4" />
-                                Go to Home
+                                홈으로 이동
                             </Button>
                         </Link>
                     </div>

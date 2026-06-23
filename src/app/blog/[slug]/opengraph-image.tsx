@@ -6,7 +6,7 @@ import { DATA } from "@/data/resume";
 
 export const runtime = "edge";
 
-export const alt = "Blog Post";
+export const alt = "블로그 글";
 export const size = {
     width: 1200,
     height: 630,
@@ -142,11 +142,11 @@ export default async function Image({
                             <div style={styles.wrapper}>
                                 {imageUrl && (
                                     <div style={styles.imageSection}>
-                                        <img src={imageUrl} alt="Blog Post" style={styles.image} />
+                                        <img src={imageUrl} alt="블로그 글" style={styles.image} />
                                     </div>
                                 )}
                                 <div style={styles.mainContainer}>
-                                    <div style={styles.title}>Post Not Found</div>
+                                    <div style={styles.title}>글을 찾을 수 없습니다</div>
                                 </div>
                             </div>
                         </div>
@@ -171,7 +171,7 @@ export default async function Image({
         const title = post.title;
         const description = post.summary || "";
         const publishedDate = post.publishedAt
-            ? new Date(post.publishedAt).toLocaleDateString("en-US", {
+            ? new Date(post.publishedAt).toLocaleDateString("ko-KR", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",

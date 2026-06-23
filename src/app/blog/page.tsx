@@ -6,16 +6,16 @@ import { paginate, normalizePage } from "@/lib/pagination";
 import { ChevronRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Thoughts on software development, life, and more.",
+  title: "블로그",
+  description: "소프트웨어 개발, 삶, 그리고 그 밖의 이야기.",
   openGraph: {
-    title: "Blog",
-    description: "Thoughts on software development, life, and more.",
+    title: "블로그",
+    description: "소프트웨어 개발, 삶, 그리고 그 밖의 이야기.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog",
-    description: "Thoughts on software development, life, and more.",
+    title: "블로그",
+    description: "소프트웨어 개발, 삶, 그리고 그 밖의 이야기.",
   },
 };
 
@@ -47,9 +47,14 @@ export default async function BlogPage({
   return (
     <section id="blog">
       <BlurFade delay={BLUR_FADE_DELAY}>
-        <h1 className="text-2xl font-semibold tracking-tight mb-2">Blog <span className="ml-1 bg-card border border-border rounded-md px-2 py-1 text-muted-foreground text-sm">{sortedPosts.length} posts</span></h1>
+        <h1 className="text-2xl font-semibold tracking-tight mb-2">
+          블로그{" "}
+          <span className="ml-1 bg-card border border-border rounded-md px-2 py-1 text-muted-foreground text-sm">
+            {sortedPosts.length}개 글
+          </span>
+        </h1>
         <p className="text-sm text-muted-foreground mb-8">
-          My thoughts on software development, life, and more.
+          소프트웨어 개발, 삶, 그리고 그 밖의 이야기들.
         </p>
       </BlurFade>
 
@@ -90,12 +95,11 @@ export default async function BlogPage({
             </div>
           </BlurFade>
 
-          {/* Pagination Controls */}
           {pagination.totalPages > 1 && (
             <BlurFade delay={BLUR_FADE_DELAY * 4}>
               <div className="flex gap-3 flex-row items-center justify-between mt-8">
                 <div className="text-sm text-muted-foreground">
-                  Page {pagination.page} of {pagination.totalPages}
+                  {pagination.page} / {pagination.totalPages} 페이지
                 </div>
                 <div className="flex gap-2 sm:justify-end">
                   {pagination.hasPreviousPage ? (
@@ -103,11 +107,11 @@ export default async function BlogPage({
                       href={`/blog?page=${pagination.page - 1}`}
                       className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg hover:bg-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
-                      Previous
+                      이전
                     </Link>
                   ) : (
                     <span className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg opacity-50 cursor-not-allowed">
-                      Previous
+                      이전
                     </span>
                   )}
                   {pagination.hasNextPage ? (
@@ -115,11 +119,11 @@ export default async function BlogPage({
                       href={`/blog?page=${pagination.page + 1}`}
                       className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg hover:bg-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
-                      Next
+                      다음
                     </Link>
                   ) : (
                     <span className="h-8 w-fit px-2 flex items-center justify-center text-sm border border-border rounded-lg opacity-50 cursor-not-allowed">
-                      Next
+                      다음
                     </span>
                   )}
                 </div>
@@ -131,7 +135,7 @@ export default async function BlogPage({
         <BlurFade delay={BLUR_FADE_DELAY * 2}>
           <div className="flex flex-col items-center justify-center py-12 px-4 border border-border rounded-xl">
             <p className="text-muted-foreground text-center">
-              No blog posts yet. Check back soon!
+              아직 작성된 블로그 글이 없습니다. 곧 다시 확인해 주세요.
             </p>
           </div>
         </BlurFade>

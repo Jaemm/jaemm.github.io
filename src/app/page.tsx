@@ -6,7 +6,6 @@ import { DATA } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import ContactSection from "@/components/section/contact-section";
-import HackathonsSection from "@/components/section/hackathons-section";
 import ProjectsSection from "@/components/section/projects-section";
 import WorkSection from "@/components/section/work-section";
 import { ArrowUpRight } from "lucide-react";
@@ -22,14 +21,14 @@ export default function Page() {
             <div className="gap-2 flex flex-col order-2 md:order-1">
               <BlurFadeText
                 delay={BLUR_FADE_DELAY}
-                className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl"
+                className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl whitespace-pre-line text-balance"
                 yOffset={8}
-                text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
+                text={`안녕하세요,\n${DATA.name.split(" ")[0]}입니다`}
               />
               <BlurFadeText
-                className="text-muted-foreground max-w-[600px] md:text-lg lg:text-xl"
+                className="text-muted-foreground max-w-[24rem] md:max-w-[28rem] md:text-lg lg:text-xl whitespace-pre-line text-balance leading-relaxed"
                 delay={BLUR_FADE_DELAY}
-                text={DATA.description}
+                text={`백엔드와 풀스택 개발을 중심으로\n서비스 품질과 안정성을 함께 챙기는 개발자입니다.`}
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
@@ -42,12 +41,12 @@ export default function Page() {
         </div>
       </section>
       <section id="about">
-        <div className="flex min-h-0 flex-col gap-y-4">
+        <div className="flex min-h-0 flex-col gap-y-5">
           <BlurFade delay={BLUR_FADE_DELAY * 3}>
-            <h2 className="text-xl font-bold">About</h2>
+            <h2 className="text-xl font-bold">소개</h2>
           </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 4}>
-            <div className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
+          <BlurFade delay={BLUR_FADE_DELAY * 4} className="mt-1">
+            <div className="prose max-w-full text-pretty font-sans leading-8 text-muted-foreground dark:prose-invert">
               <Markdown>
                 {DATA.summary}
               </Markdown>
@@ -58,7 +57,7 @@ export default function Page() {
       <section id="work">
         <div className="flex min-h-0 flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Work Experience</h2>
+            <h2 className="text-xl font-bold">경력</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 6}>
             <WorkSection />
@@ -68,7 +67,7 @@ export default function Page() {
       <section id="education">
         <div className="flex min-h-0 flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
-            <h2 className="text-xl font-bold">Education</h2>
+            <h2 className="text-xl font-bold">학력</h2>
           </BlurFade>
           <div className="flex flex-col gap-8">
             {DATA.education.map((education, index) => (
@@ -116,7 +115,7 @@ export default function Page() {
       <section id="skills">
         <div className="flex min-h-0 flex-col gap-y-4">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">Skills</h2>
+            <h2 className="text-xl font-bold">기술</h2>
           </BlurFade>
           <div className="flex flex-wrap gap-2">
             {DATA.skills.map((skill, id) => (
@@ -135,13 +134,8 @@ export default function Page() {
           <ProjectsSection />
         </BlurFade>
       </section>
-      <section id="hackathons">
-        <BlurFade delay={BLUR_FADE_DELAY * 13}>
-          <HackathonsSection />
-        </BlurFade>
-      </section>
       <section id="contact">
-        <BlurFade delay={BLUR_FADE_DELAY * 16}>
+        <BlurFade delay={BLUR_FADE_DELAY * 13}>
           <ContactSection />
         </BlurFade>
       </section>

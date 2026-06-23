@@ -37,7 +37,7 @@ export async function generateMetadata({
     return undefined;
   }
 
-  let {
+  const {
     title,
     publishedAt: publishedTime,
     summary: description,
@@ -91,10 +91,11 @@ export default async function Blog({
   }
 
   const previousPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
-  const nextPost = currentIndex < sortedPosts.length - 1 ? sortedPosts[currentIndex + 1] : null;
+  const nextPost =
+    currentIndex < sortedPosts.length - 1 ? sortedPosts[currentIndex + 1] : null;
 
-  const getSlug = (post: (typeof sortedPosts)[0]) =>
-    post._meta.path.replace(/\.mdx$/, "");
+  const getSlug = (item: (typeof sortedPosts)[0]) =>
+    item._meta.path.replace(/\.mdx$/, "");
 
   const jsonLdContent = JSON.stringify({
     "@context": "https://schema.org",
@@ -123,9 +124,13 @@ export default async function Blog({
         }}
       />
       <div className="flex justify-start gap-4 items-center">
-        <Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground transition-colors border border-border rounded-lg px-2 py-1 inline-flex items-center gap-1 mb-6 group" aria-label="Back to Blog">
+        <Link
+          href="/blog"
+          className="text-sm text-muted-foreground hover:text-foreground transition-colors border border-border rounded-lg px-2 py-1 inline-flex items-center gap-1 mb-6 group"
+          aria-label="블로그로 돌아가기"
+        >
           <ChevronLeft className="size-3 group-hover:-translate-x-px transition-transform" />
-          Back to Blog
+          블로그로
         </Link>
       </div>
       <div className="flex flex-col gap-4">
@@ -160,7 +165,7 @@ export default async function Blog({
             >
               <span className="flex items-center gap-1 text-xs text-muted-foreground">
                 <ChevronLeft className="size-3" />
-                Previous
+                이전 글
               </span>
               <span className="text-sm font-medium group-hover:text-foreground transition-colors whitespace-normal wrap-break-word">
                 {previousPost.title}
@@ -176,7 +181,7 @@ export default async function Blog({
               className="group flex-1 flex flex-col gap-1 p-4 rounded-lg border border-border hover:bg-accent/50 transition-colors text-right"
             >
               <span className="flex items-center justify-end gap-1 text-xs text-muted-foreground">
-                Next
+                다음 글
                 <ChevronRight className="size-3" />
               </span>
               <span className="text-sm font-medium group-hover:text-foreground transition-colors whitespace-normal wrap-break-word">
