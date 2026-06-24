@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useRef, useEffect, type ComponentProps } from "react";
-import { Copy, Check } from "lucide-react";
-import { Button } from "../ui/button";
+import { useEffect, useRef, useState, type ComponentProps } from "react";
+import { Check, Copy } from "lucide-react";
 import { codeToHtml } from "shiki/bundle/web";
 import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
+import { MermaidDiagram } from "./mermaid-diagram";
 
 type CodeBlockProps = ComponentProps<"pre">;
 
@@ -16,11 +17,10 @@ function extractLanguage(className?: string): string {
 
 export function CodeBlock({ children, ...props }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
-  const [{ html, className, title }, setRenderState] = useState<{
-    html: string;
-    className: string;
-    title: string | null;
-  }>({ html: "", className: "", title: null });
+  const [html, setHtml] = useState("");
+  const [language, setLanguage] = useState("plaintext");
+  const [title, setTitle] = useState<string | null>(null);
+  const [code, setCode] = useState("");
   const preRef = useRef<HTMLPreElement>(null);
 
   useEffect(() => {
@@ -28,36 +28,39 @@ export function CodeBlock({ children, ...props }: CodeBlockProps) {
     const codeEl = pre?.querySelector("code");
     if (!pre || !codeEl) return;
 
-    const codeText = codeEl.textContent || "";
-    const lang = extractLanguage(codeEl.className);
+    const nextCode = codeEl.textContent || "";
+    const nextLanguage = extractLanguage(codeEl.className);
     const nextTitle = codeEl.getAttribute("data-title");
-    const nextClassName = codeEl.className || "";
 
-    void codeToHtml(codeText, {
-      lang: lang as any,
+    setCode(nextCode);
+    setLanguage(nextLanguage);
+    setTitle(nextTitle);
+
+    if (nextLanguage === "mermaid") {
+      setHtml("");
+      return;
+    }
+
+    void codeToHtml(nextCode, {
+      lang: nextLanguage as any,
       themes: {
         light: "github-light",
         dark: "github-dark",
       },
       defaultColor: false,
     })
-      .then((html) => {
+      .then((result) => {
         const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-        setRenderState({
-          html: doc.querySelector("code")?.innerHTML ?? "",
-          className: nextClassName,
-          title: nextTitle,
-        });
+        const doc = parser.parseFromString(result, "text/html");
+        setHtml(doc.querySelector("code")?.innerHTML ?? "");
       })
       .catch((error) => {
         console.error("Failed to highlight code:", error);
-        setRenderState({ html: "", className: nextClassName, title: nextTitle });
+        setHtml("");
       });
   }, [children]);
 
   const handleCopy = async () => {
-    const code = preRef.current?.textContent || "";
     try {
       await navigator.clipboard.writeText(code);
       setCopied(true);
@@ -67,6 +70,19 @@ export function CodeBlock({ children, ...props }: CodeBlockProps) {
     }
   };
 
+  if (language === "mermaid") {
+    return (
+      <div className="group relative rounded-xl overflow-hidden border border-border">
+        {title ? (
+          <div className="p-3 text-xs font-medium border-b border-border rounded-t-xl bg-muted/50 text-foreground">
+            {title}
+          </div>
+        ) : null}
+        <MermaidDiagram code={code} />
+      </div>
+    );
+  }
+
   return (
     <div className="group relative rounded-xl overflow-hidden border border-border">
       <pre
@@ -74,37 +90,36 @@ export function CodeBlock({ children, ...props }: CodeBlockProps) {
         {...props}
         className={cn("p-0! m-0! overflow-x-auto", props.className)}
       >
-        {title && (
+        {title ? (
           <div className="p-3 text-xs font-medium border-b border-border rounded-t-xl bg-muted/50 text-foreground">
             {title}
           </div>
-        )}
+        ) : null}
 
         <Button
           onClick={handleCopy}
           variant="outline"
           size="icon"
-          className={cn("absolute size-8 text-primary cursor-pointer right-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity rounded-md border border-border shadow-none", title ? "top-13" : "top-3", props.className)}
+          className={cn(
+            "absolute size-8 text-primary cursor-pointer right-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity rounded-md border border-border shadow-none",
+            title ? "top-13" : "top-3",
+          )}
           aria-label="Copy code"
         >
           {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
         </Button>
-        {html && (
+
+        {html ? (
           <div className="p-3">
             <code
-              className={`shiki ${className}`}
+              className={`shiki ${props.className ?? ""}`}
               dangerouslySetInnerHTML={{ __html: html }}
             />
           </div>
+        ) : (
+          <div className="p-4">{children}</div>
         )}
-
-        {!html && (
-          <div className="p-4">
-            {children}
-          </div>
-        )}
-      </pre >
-    </div >
+      </pre>
+    </div>
   );
 }
-
