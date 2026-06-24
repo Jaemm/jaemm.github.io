@@ -131,5 +131,30 @@ export const DATA = {
       image: "/projects/crm/grafana_magicui_style.gif",
       video: "",
     },
+    {
+      title: "Analysis Collector API Server",
+      href: "/projects/analysis-collector/",
+      dates: "analysis 중심 모듈형 API",
+      active: true,
+      description:
+        "분석 결과 원본 JSON과 이미지 파일을 S3에 저장하고 app/web이 같은 원본을 바라보도록 만든 NestJS 기반 analysis API입니다.",
+      technologies: [
+        "NestJS",
+        "TypeScript",
+        "PostgreSQL",
+        "JWT",
+        "AWS S3",
+        "Swagger",
+      ],
+      links: [
+        {
+          icon: <Icons.github className="size-3.5" />,
+          type: "GitHub",
+          href: "https://github.com/Jaemm/Analysis_Collector_Backend",
+        },
+      ],
+      image: "/projects/crm/swagger2_magicui_style.gif",
+      video: "",
+    },
   ],
 } as const;
