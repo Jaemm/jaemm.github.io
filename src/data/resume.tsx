@@ -1,4 +1,3 @@
-import { Icons } from "@/components/icons";
 import { HomeIcon, NotebookIcon } from "lucide-react";
 import { NextjsIconDark } from "@/components/ui/svgs/tech/nextjsIconDark";
 import { Nestjs } from "@/components/ui/svgs/tech/nestjs";
@@ -7,6 +6,7 @@ import { Redis } from "@/components/ui/svgs/tech/redis";
 import { Docker } from "@/components/ui/svgs/tech/docker";
 import { Kubernetes } from "@/components/ui/svgs/tech/kubernetes";
 import { Aws } from "@/components/ui/svgs/tech/aws";
+import { Icons } from "@/components/icons";
 
 export const DATA = {
   name: "최재민",
@@ -121,7 +121,13 @@ export const DATA = {
         "BullMQ",
         "AWS S3",
       ],
-      links: [],
+      links: [
+        {
+          icon: <Icons.github className="size-3.5" />,
+          type: "GitHub",
+          href: "https://github.com/Jaemm/Login_CRM_Backend.git",
+        },
+      ],
       image: "/projects/crm/grafana_magicui_style.gif",
       video: "",
     },
