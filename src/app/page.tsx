@@ -13,6 +13,28 @@ import { ArrowUpRight } from "lucide-react";
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Page() {
+  const sortedEducation = [...DATA.education].sort((a, b) => {
+    const aYear = Number.parseInt(a.start, 10);
+    const bYear = Number.parseInt(b.start, 10);
+
+    if (Number.isNaN(aYear) || Number.isNaN(bYear)) {
+      return 0;
+    }
+
+    return bYear - aYear;
+  });
+
+  const sortedTraining = [...(DATA.training ?? [])].sort((a, b) => {
+    const aYear = Number.parseInt(a.start, 10);
+    const bYear = Number.parseInt(b.start, 10);
+
+    if (Number.isNaN(aYear) || Number.isNaN(bYear)) {
+      return 0;
+    }
+
+    return bYear - aYear;
+  });
+
   return (
     <main className="min-h-dvh flex flex-col gap-14 relative">
       <section id="hero">
@@ -23,12 +45,12 @@ export default function Page() {
                 delay={BLUR_FADE_DELAY}
                 className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl whitespace-pre-line text-balance"
                 yOffset={8}
-                text={`안녕하세요,\n${DATA.name.split(" ")[0]}입니다`}
+                text={`${DATA.name.split(" ")[0]}`}
               />
               <BlurFadeText
                 className="text-muted-foreground max-w-[24rem] md:max-w-[28rem] md:text-lg lg:text-xl whitespace-pre-line text-balance leading-relaxed"
                 delay={BLUR_FADE_DELAY}
-                text={`백엔드 개발을 중심으로\n서비스 품질과 안정성을 함께 챙기는 개발자입니다.`}
+                text={`서버 백엔드 엔지니어`}
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
@@ -68,7 +90,7 @@ export default function Page() {
             <h2 className="text-xl font-bold">학력</h2>
           </BlurFade>
           <div className="flex flex-col gap-8">
-            {DATA.education.map((education, index) => (
+            {sortedEducation.map((education, index) => (
               <BlurFade
                 key={education.school}
                 delay={BLUR_FADE_DELAY * 8 + index * 0.05}
@@ -113,16 +135,67 @@ export default function Page() {
           </div>
         </div>
       </section>
+      <section id="training">
+        <div className="flex min-h-0 flex-col gap-y-6">
+          <BlurFade delay={BLUR_FADE_DELAY * 9}>
+            <h2 className="text-xl font-bold">교육</h2>
+          </BlurFade>
+          <div className="flex flex-col gap-8">
+            {sortedTraining.map((training, index) => (
+              <BlurFade
+                key={training.school}
+                delay={BLUR_FADE_DELAY * 10 + index * 0.05}
+              >
+                <Link
+                  href={training.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-x-3 justify-between group"
+                >
+                  <div className="flex items-center gap-x-3 flex-1 min-w-0">
+                    {training.logoUrl ? (
+                      <img
+                        src={training.logoUrl}
+                        alt={training.school}
+                        className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border overflow-hidden object-contain flex-none"
+                      />
+                    ) : (
+                      <div className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border bg-muted flex-none" />
+                    )}
+                    <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+                      <div className="font-semibold leading-none flex items-center gap-2">
+                        {training.school}
+                        <ArrowUpRight
+                          className="h-3.5 w-3.5 text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200"
+                          aria-hidden
+                        />
+                      </div>
+                      <div className="font-sans text-sm text-muted-foreground">
+                        {training.degree}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1 text-xs tabular-nums text-muted-foreground text-right flex-none">
+                    <span>
+                      {training.start} - {training.end}
+                    </span>
+                  </div>
+                </Link>
+              </BlurFade>
+            ))}
+          </div>
+        </div>
+      </section>
       <section id="skills">
         <div className="flex min-h-0 flex-col gap-y-4">
-          <BlurFade delay={BLUR_FADE_DELAY * 9}>
+          <BlurFade delay={BLUR_FADE_DELAY * 11}>
             <h2 className="text-xl font-bold">기술</h2>
           </BlurFade>
           <div className="flex flex-wrap gap-2">
             {DATA.skills.map((skill, id) => (
               <BlurFade
                 key={skill.name}
-                delay={BLUR_FADE_DELAY * 10 + id * 0.05}
+                delay={BLUR_FADE_DELAY * 12 + id * 0.05}
               >
                 <div className="border bg-background border-border ring-2 ring-border/20 rounded-xl h-8 w-fit px-4 flex items-center gap-2">
                   {skill.icon && (
@@ -138,12 +211,12 @@ export default function Page() {
         </div>
       </section>
       <section id="projects">
-        <BlurFade delay={BLUR_FADE_DELAY * 11}>
+        <BlurFade delay={BLUR_FADE_DELAY * 13}>
           <ProjectsSection />
         </BlurFade>
       </section>
       <section id="contact">
-        <BlurFade delay={BLUR_FADE_DELAY * 13}>
+        <BlurFade delay={BLUR_FADE_DELAY * 15}>
           <ContactSection />
         </BlurFade>
       </section>

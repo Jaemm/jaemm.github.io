@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Markdown from "react-markdown";
@@ -9,21 +10,22 @@ import { MermaidDiagram } from "@/components/mdx/mermaid-diagram";
 export const metadata: Metadata = {
   title: "Login CRM API Server",
   description:
-    "NestJS 기반 CRM 백엔드 프로젝트의 소개, 역할, 기술 스택, 아키텍처와 트러블슈팅을 정리한 상세페이지입니다.",
+    "NestJS 기반 CRM 백엔드 프로젝트로, 고객/상담사/매장/제품/라이선스/분석 이벤트/웹 결과/인증/메일 발송을 통합 운영한 시스템입니다.",
 };
 
 const introContent = `
 # Login CRM API Server
 
-NestJS 기반 CRM 백엔드 서비스로, 고객, 상담사, 매장, 제품, 라이선스, 분석 이벤트, 웹 결과 관리, 인증/권한, 이메일 발송까지 포함한 통합 운영용 서버입니다.
+NestJS 기반 CRM 백엔드 서비스로, 고객, 상담사, 매장, 제품, 라이선스, 분석 이벤트, 웹 결과, 인증/권한, 이메일 발송까지 포함한 통합 운영용 서버입니다.
 
 PostgreSQL, Redis(BullMQ), JWT, Swagger, Prometheus, S3, 외부 메일/인증 연동을 포함한 모듈형 모놀리식 구조로 구성했습니다.
 
 ## 1. 프로젝트 소개
 
-- NestJS 기반의 CRM 백엔드 서비스입니다.
-- 고객, 상담사, 매장, 제품, 라이선스, 분석 이벤트, 웹 결과 관리, 인증/권한, 이메일 발송까지 포함한 통합 운영용 서버입니다.
-- PostgreSQL, Redis(BullMQ), JWT, Swagger, Prometheus, S3, 외부 메일/인증 연동을 포함한 모듈형 모놀리식 구조로 구성되어 있습니다.
+- NestJS 기반 CRM 백엔드 서비스입니다.
+- 고객, 상담사, 매장, 제품, 라이선스, 분석 이벤트, 웹 결과, 인증/권한, 이메일 발송까지 포함한 통합 운영용 서버입니다.
+- PostgreSQL, Redis(BullMQ), JWT, Swagger, Prometheus, S3, 외부 메일/인증 연동을 포함한 모듈형 모놀리식 구조로 구성했습니다.
+- consultants 2만명, customers 190만명 규모의 프로젝트였습니다.
 `;
 
 const content = `
@@ -64,19 +66,23 @@ const content = `
 - 운영 관측성 강화
   - request-id, 구조화 로그, Prometheus, Airbrake를 연결해 장애 분석과 추적성을 확보했습니다.
 
-## 5. 주요 트러블 슈팅
+## 5. 주요 트러블슈팅
 
 1. **다중 DB 환경에서 엔티티 관리가 복잡해짐**
-   - 문제: 분석 DB와 일반 업무 DB가 섞이면 엔티티 충돌과 쿼리 대상 혼선이 발생할 수 있었습니다.
+   - 문제: 분석 DB와 일반 업무 DB가 섞이면 엔티티 충돌과 쿼리 대상 혼선이 생길 수 있었습니다.
    - 해결: TypeORM 커넥션을 globalDB, cndpSkinDB, cndpHairDB, cmaSkinDB, cmaHairDB로 분리하고, 분석 전용 엔티티 범위를 따로 관리했습니다.
 
 2. **에러 응답 형식이 기능마다 달라 클라이언트 처리가 어려움**
-   - 문제: 각 모듈에서 다른 예외 포맷을 쓰면 프론트/연동 측 처리 비용이 커집니다.
+   - 문제: 각 모듈에서 다른 예외 포맷을 쓰면 프론트와 연동 측 처리 비용이 커집니다.
    - 해결: AllExceptionsFilter로 모든 예외를 공통 응답 포맷으로 변환하고, 언어별 에러 메시지도 일관되게 처리했습니다.
 
 3. **메일 발송이 동기식이면 API 지연과 실패 전파가 발생**
    - 문제: 발송 지연이 곧 API 응답 지연으로 이어질 수 있습니다.
    - 해결: BullMQ 큐를 도입하고 워커에서 순차 처리하도록 분리해 API와 발송 책임을 나눴습니다.
+
+4. **운영 중 이슈 추적에 필요한 문맥 정보가 부족**
+   - 문제: 요청 단위로 어떤 사용자/앱/기기에서 오류가 났는지 추적이 어려울 수 있습니다.
+   - 해결: request-id 미들웨어, 사용자/앱 컨텍스트 수집, Airbrake 연동, 구조화 로그를 통해 원인 분석 가능성을 높였습니다.
 
 ## 6. 배운 점
 
@@ -126,7 +132,7 @@ export default function ProjectDetailPage() {
         <Button asChild variant="outline" size="sm">
           <Link href="/">
             <ArrowLeft className="mr-2 size-4" />
-            홈으로
+            뒤로
           </Link>
         </Button>
 
@@ -146,12 +152,13 @@ export default function ProjectDetailPage() {
 
         <section className="not-prose my-8 space-y-3">
           <h2 className="text-lg font-semibold tracking-tight">서비스 아키텍처</h2>
-          <figure className="h-[320px] overflow-hidden rounded-2xl border border-border/70 bg-muted/30 md:h-[420px]">
-            <img
+          <figure className="relative h-[320px] overflow-hidden rounded-2xl border border-border/70 bg-muted/30 md:h-[420px]">
+            <Image
               src="/projects/crm/service.png"
-              alt="CRM 서비스 화면"
-              className="h-full w-full object-contain p-2"
-              loading="lazy"
+              alt="서비스 아키텍처"
+              fill
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="object-contain p-2"
             />
           </figure>
         </section>

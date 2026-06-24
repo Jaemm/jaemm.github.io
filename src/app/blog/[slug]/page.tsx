@@ -7,6 +7,7 @@ import { MDXContent } from "@content-collections/mdx/react";
 import { mdxComponents } from "@/mdx-components";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+import { GiscusComments } from "@/components/giscus-comments";
 
 function getSortedPosts() {
   return [...allPosts].sort((a, b) => {
@@ -127,6 +128,7 @@ export default async function BlogPost({
       <article className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
         <MDXContent code={post.mdx} components={mdxComponents} />
       </article>
+      <GiscusComments />
     </section>
   );
 }
